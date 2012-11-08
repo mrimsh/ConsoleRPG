@@ -1,6 +1,6 @@
 package consolerpg;
 
-import consolerpg.resources.Location;
+import consolerpg.resources.*;
 import java.util.HashMap;
 
 /**
@@ -9,5 +9,6 @@ import java.util.HashMap;
  */
 public class LoadedData {
 
+    public ScenarioInfo scenarioInfo;
     public HashMap<String, Location> locations = new HashMap<String, Location>();
 }

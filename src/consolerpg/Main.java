@@ -1,9 +1,7 @@
 package consolerpg;
 
-import com.apple.crypto.provider.Debug;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,7 +11,6 @@ import java.util.logging.Logger;
  */
 public class Main {
 
-    Scanner scaner = new Scanner(System.in);
     String scenarioFile = "";
 
     /**
@@ -40,9 +37,9 @@ public class Main {
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (new File(scenarioPath).exists())
-        {
-            LoadedData loadScenario = ScenarioLoader.getInstance().loadScenario(scenarioPath);
+        if (new File(scenarioPath).exists()) {
+            LoadedData loadedScenario = ScenarioLoader.getInstance().loadScenario(scenarioPath);
+            new GameProcessor(loadedScenario).processGame();
         }
     }
 }

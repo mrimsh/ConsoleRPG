@@ -1,0 +1,12 @@
+# Scenario properties data file.
+#
+# $name - scenario name
+# $desc - description of scenario
+# $startloc - start location of scenario
+#
+# use '#' symbol for comments and empty strings for formatting
+
+
+$name=Legends of Test Scenario
+$desc=Some test scenario data file..
+$startloc=Стартовая зона номер НУЛЬ

@@ -1,6 +1,6 @@
 package consolerpg;
 
-import consolerpg.resources.Location;
+import consolerpg.resources.*;
 import java.util.Scanner;
 
 /**
@@ -9,14 +9,20 @@ import java.util.Scanner;
  */
 public class GameProcessor implements Runnable {
 
-    Scanner scaner = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
     private GameState gameState = GameState.Location;
     private boolean isToExit = false;
+    private LoadedData loadedScenario;
     // <editor-fold defaultstate="collapsed" desc="Location fields">
-    private String loc_currentName = "StartLocation";
+    private Location loc_currentLocation;
     // </editor-fold>
 
     public GameProcessor() {
+    }
+
+    GameProcessor(LoadedData loadedScenario) {
+        this.loadedScenario = loadedScenario;
+        loc_currentLocation = loadedScenario.locations.get(loadedScenario.scenarioInfo.startLocation);
     }
 
     public void run() {
@@ -51,7 +57,26 @@ public class GameProcessor implements Runnable {
     }
 
     private void processLocationState() {
-        throw new UnsupportedOperationException("Not yet implemented");
+        System.out.println(loc_currentLocation.description);
+        System.out.println("\nВы можете отправиться в следующие места:");
+        for (int i = 0; i < loc_currentLocation.travels.size(); i++)
+        {
+            System.out.println(loc_currentLocation.travels.get(i));
+        }
+        System.out.println("\nЧто вы выберете?\n");
+
+        String result;
+        result = scanner.nextLine();
+        if (result.startsWith(":")) {
+            RunCommand(result);
+        } else {
+        }
+    }
+
+    private void RunCommand(String result) {
+        if (result.equalsIgnoreCase(":exit")) {
+            isToExit = true;
+        }
     }
 }
 
